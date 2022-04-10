@@ -5,6 +5,7 @@ import java.util.Arrays;
 /**
  * 字符串KMP匹配算法
  * 思想：动态规划优化回溯，状态转移图，从之前状态推出现在状态
+ * 相当于自己和自己先匹配一遍，然后在和其他匹配
  */
 public class Kmp {
 
@@ -16,7 +17,7 @@ public class Kmp {
      */
     public static int kmp(String txt, String pattern){
         // 1、根据pattern构造next数组
-        int[] next = new int[pattern.length()];// next[i]表示如果i位置不匹配，从next[i]位置重新匹配
+        int[] next = new int[pattern.length()];// next[i]表示如果i位置不匹配，从next[i]位置重新匹配；表示i-1前和next[i]-1前匹配
         int i = 0;// 指向后缀末尾
         int j = -1;// 指向前缀末尾
         next[0] = j;
