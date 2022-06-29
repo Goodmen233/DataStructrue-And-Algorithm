@@ -2,6 +2,8 @@ package com.ccb.sorted.compare.select;
 
 /**
  * 堆排序，每次把堆顶（最值）放到数组后面
+ * 往上构建heapInsert
+ * 往下构建heapify
  */
 public class HeapSort {
 
@@ -12,12 +14,12 @@ public class HeapSort {
     public static void sortUp(int[] arr){
         // 构建大顶堆
         for(int i = arr.length / 2 - 1; i >= 0; i--){
-            heapifyPartUp(arr, i, arr.length - 1);
+            heapifyPartUp(arr, i, arr.length);
         }
         // 每次把堆顶元素和末尾元素交换，并重新堆化
         for(int i = arr.length - 1; i > 0; i--){
             swap(arr, 0, i);
-            heapifyPartUp(arr, 0, i - 1);
+            heapifyPartUp(arr, 0, i);
         }
     }
 
@@ -32,11 +34,11 @@ public class HeapSort {
         int right = 2 * root + 2;
         int largestPos = root;
         // 如果左节点大于largestPos，largestPos等于左节点的位置
-        if(left <= len && arr[left] > arr[largestPos]){
+        if(left < len && arr[left] > arr[largestPos]){
             largestPos = left;
         }
         // 如果右节点大于largestPos，largestPos等于右节点的位置
-        if(right <= len && arr[right] > arr[largestPos]){
+        if(right < len && arr[right] > arr[largestPos]){
             largestPos = right;
         }
         // 此时如果largestPos不等于root，那么将largestPos的值与root交换，并对largestPos的局部堆重新堆化
@@ -52,7 +54,7 @@ public class HeapSort {
      */
     public static void sortDown(int[] arr){
         // 构建小顶堆
-        for(int i = (arr.length - 3) / 2; i >= 0; i--){// (arr.length - 3) / 2 让右节点对应的是数组中的最后一个元素
+        for(int i = (arr.length - 1) / 2; i >= 0; i--){// (arr.length - 3) / 2 让右节点对应的是数组中的最后一个元素？？？？？？？？？？？？？？？？
             heapifyPartDown(arr, i, arr.length - 1);
         }
         // 每次把堆顶元素和末尾元素交换

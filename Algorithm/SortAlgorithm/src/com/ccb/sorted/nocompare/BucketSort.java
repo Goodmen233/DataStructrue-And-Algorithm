@@ -8,12 +8,12 @@ import java.util.List;
 /**
  * 桶排序，利用函数映射将每个数映射到对应桶里，然后按顺序遍历桶
  * 每个桶要么在插入时候排序，要么每次访问桶时直接排序，后者效率比较好
- * 假设桶有10个(0 ~ 9), 数的范围在 0~99 之间
  */
 public class BucketSort {
 
     /**
      * 桶排序——升序
+     * 数的范围在 0~99 之间
      * @param arr 要排序的数组
      */
     public static void sortUp(int[] arr){
@@ -40,6 +40,7 @@ public class BucketSort {
 
     /**
      * 桶排序——降序
+     * 数的范围在 0~99 之间
      * @param arr 要排序的数组
      */
     public static void sortDown(int[] arr){
