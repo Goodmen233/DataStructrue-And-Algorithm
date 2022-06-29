@@ -69,6 +69,7 @@ public class BucketSort {
     /**
      * 堆排序-不限位数
      * 通过前缀和来确定位置
+     * 前缀和数组的值对应 最后 进该桶的数应该放的位置->从右往左遍历入桶
      * @param arr 排序的数组
      */
     public static void sort(int[] arr){
@@ -85,7 +86,7 @@ public class BucketSort {
             max /= 10;
             digit++;
         }
-        // 3、准备十个桶，一个临时数组
+        // 3、准备十个桶
         int[] bucket = new int[arr.length];
         int i,j;
         // 4、桶排序，有几位就循环几次
