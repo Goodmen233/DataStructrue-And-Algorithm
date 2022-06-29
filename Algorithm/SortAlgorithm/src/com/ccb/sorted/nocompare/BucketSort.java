@@ -64,4 +64,67 @@ public class BucketSort {
 
         }
     }
+
+    //--------------------------------new by 2022.06.29-----------------------------------------------------------------
+    /**
+     * 堆排序-不限位数
+     * 通过前缀和来确定位置
+     * @param arr 排序的数组
+     */
+    public static void sort(int[] arr){
+        // 1、找到最大值
+        int max = arr[0];
+        for(int i = 1; i < arr.length; i++){
+            if(arr[i] > max){
+                max = arr[i];
+            }
+        }
+        // 2、求最大值的位数
+        int digit = 0;
+        while(max != 0){
+            max /= 10;
+            digit++;
+        }
+        // 3、准备十个桶，一个临时数组
+        int[] bucket = new int[arr.length];
+        int i,j;
+        // 4、桶排序，有几位就循环几次
+        for(int d = 1; d <= digit; d++){
+            int[] count = new int[10];
+            // 对所有数对应位数的值进行统计
+            for (i = 0; i < arr.length; i++) {
+                j = getDigit(arr[i], d);
+                count[j]++;
+            }
+            // 计算前缀和
+            for(i = 1; i < 10; i++){
+                count[i] += count[i - 1];
+            }
+            // 从后往前通过前缀和放入桶里面
+            for(i = arr.length - 1; i >= 0; i--){
+                j = getDigit(arr[i], d);
+                bucket[count[j] - 1] = arr[i];
+                count[j]--;
+            }
+            // 将桶中的值放入原数组中
+            for(i = 0; i < arr.length; i++){
+                arr[i] = bucket[i];
+            }
+        }
+    }
+
+    /**
+     * 获取数字指定位数上的值
+     * @param num 数字
+     * @param d 位数
+     */
+    private static int getDigit(int num, int d){
+        int res = 0;
+        while(d > 0){
+            res = num % 10;
+            num /= 10;
+            d--;
+        }
+        return res;
+    }
 }

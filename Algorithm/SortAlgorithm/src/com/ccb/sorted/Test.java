@@ -1,6 +1,7 @@
 package com.ccb.sorted;
 
 import com.ccb.sorted.compare.swap.*;
+import com.ccb.sorted.nocompare.BucketSort;
 
 public class Test {
     public static void main(String[] args) {
@@ -13,7 +14,7 @@ public class Test {
 //        QuickSort.sortUp(arr);
 //        QuickSort.sortDown(arr);
 //        QuickSort.sort1(arr);
-        QuickSort.sort2(arr);
+//        QuickSort.sort2(arr);
 //        SelectSort.sortUp(arr);
 //        SelectSort.sortDown(arr);
 //        InsertSort.sortUp(arr);
@@ -28,6 +29,7 @@ public class Test {
 //        CountingSort.sortDown(arr);
 //        BucketSort.sortUp(arr);
 //        BucketSort.sortDown(arr);
+        BucketSort.sort(arr);
 //        RadixSort.sortUp(arr);
 //        RadixSort.sortDown(arr);
         soutArr(arr);
