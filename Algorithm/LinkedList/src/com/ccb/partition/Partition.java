@@ -1,6 +1,6 @@
 package com.ccb.partition;
 
-import com.ccb.Node;
+import com.ccb.def.Node;
 
 /**
  * 根据传入数值进行分区

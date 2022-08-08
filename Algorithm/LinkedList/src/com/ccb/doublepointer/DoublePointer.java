@@ -1,6 +1,6 @@
 package com.ccb.doublepointer;
 
-import com.ccb.Node;
+import com.ccb.def.Node;
 
 /**
  * 双指针工具类

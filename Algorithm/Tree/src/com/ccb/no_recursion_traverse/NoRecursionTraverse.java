@@ -1,6 +1,6 @@
 package com.ccb.no_recursion_traverse;
 
-import com.ccb.TreeNode;
+import com.ccb.def.TreeNode;
 
 import java.util.Deque;
 import java.util.LinkedList;

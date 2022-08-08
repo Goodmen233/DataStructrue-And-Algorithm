@@ -1,7 +1,6 @@
-package com.ccb.test;
+package com.ccb;
 
-import com.ccb.Node;
-import com.ccb.doublepointer.DoublePointer;
+import com.ccb.def.Node;
 import com.ccb.partition.Partition;
 
 public class Test {

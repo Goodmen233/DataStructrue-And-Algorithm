@@ -1,6 +1,6 @@
-package com.ccb.test;
+package com.ccb;
 
-import com.ccb.TreeNode;
+import com.ccb.def.TreeNode;
 import com.ccb.no_recursion_traverse.NoRecursionTraverse;
 import com.ccb.recursion_traverse.RecursionTraverse;
 

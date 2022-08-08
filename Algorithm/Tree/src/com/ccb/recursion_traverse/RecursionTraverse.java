@@ -1,6 +1,6 @@
 package com.ccb.recursion_traverse;
 
-import com.ccb.TreeNode;
+import com.ccb.def.TreeNode;
 
 /**
  * 前中后三种顺序递归遍历
