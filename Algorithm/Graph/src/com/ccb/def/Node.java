@@ -2,6 +2,7 @@ package com.ccb.def;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 图 节点结构
@@ -38,6 +39,24 @@ public class Node {
         out = 0;
         nexts = new ArrayList<>();
         edges = new ArrayList<>();
+    }
+
+    /**
+     * 只要节点值一样，就认为一样
+     * @param o
+     * @return
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node node = (Node) o;
+        return value == node.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 
     @Override
