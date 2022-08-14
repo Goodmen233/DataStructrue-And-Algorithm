@@ -3,7 +3,7 @@ package com.ccb;
 import com.ccb.def.Node;
 import com.ccb.partition.Partition;
 
-public class Test {
+public class TestLinkedList {
     public static void main(String[] args) {
         Node<Integer> head = new Node<Integer>(new Integer[]{1,99,3,4,12,6,8,9,0,13});
 //        Node<Integer> head = new Node<Integer>(new Integer[]{23,34,56,78,56,8,9});

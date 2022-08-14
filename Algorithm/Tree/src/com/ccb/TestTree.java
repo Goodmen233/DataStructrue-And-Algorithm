@@ -7,7 +7,7 @@ import com.ccb.recursion_traverse.RecursionTraverse;
 /**
  * 测试类
  */
-public class Test {
+public class TestTree {
 
     public static void main(String[] args) {
         TreeNode root = getTree();

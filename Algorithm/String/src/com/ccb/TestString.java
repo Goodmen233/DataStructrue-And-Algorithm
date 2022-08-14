@@ -2,7 +2,7 @@ package com.ccb;
 
 import com.ccb.kmp.Kmp;
 
-public class Test {
+public class TestString {
     public static void main(String[] args) {
         String s = "abababb";//abababb
         String str = "abacbcabababbcbc";
