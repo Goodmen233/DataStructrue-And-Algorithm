@@ -3,6 +3,7 @@ package com.ccb;
 import com.ccb.change.MatrixToGraph;
 import com.ccb.def.Graph;
 import com.ccb.minpath.Dijkstra;
+import com.ccb.mst.MultipleSpanningTree;
 import com.ccb.sort.TopologicalSort;
 import com.ccb.traverse.Bfs;
 import com.ccb.traverse.Dfs;
@@ -21,7 +22,38 @@ public class Test {
 //        testDfs();
 //        testBfs();
 //        testSort();
-        testDijkstra();
+//        testDijkstra();
+        testMst();
+    }
+
+    public static void testMst() {
+        Integer[][] matrix = new Integer[][]{
+                {0,1,17},
+                {1,0,17},
+                {1,2,6},
+                {2,1,6},
+                {2,3,10},
+                {3,2,10},
+                {1,3,5},
+                {3,1,5},
+                {3,4,4},
+                {4,3,4},
+                {0,4,16},
+                {4,0,16},
+                {0,5,1},
+                {5,0,1},
+                {1,5,11},
+                {5,1,11},
+                {4,5,33},
+                {5,4,33},
+                {5,3,14},
+                {3,5,14},
+                {6,7,67}
+        };
+        Graph graph0 = MatrixToGraph.change0(matrix);
+        System.out.println(graph0);
+        System.out.println(MultipleSpanningTree.prim(graph0));
+        System.out.println(MultipleSpanningTree.Kruskal(graph0));
     }
 
     public static void testDijkstra() {
