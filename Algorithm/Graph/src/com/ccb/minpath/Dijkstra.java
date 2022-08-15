@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 寻找最短路径
+ * 寻找最短路径-不能有负值的边
  */
 public class Dijkstra {
 
