@@ -2,6 +2,7 @@ package com.ccb;
 
 import com.ccb.change.MatrixToGraph;
 import com.ccb.def.Graph;
+import com.ccb.minpath.Dijkstra;
 import com.ccb.sort.TopologicalSort;
 import com.ccb.traverse.Bfs;
 import com.ccb.traverse.Dfs;
@@ -19,9 +20,28 @@ public class Test {
 //        testMatrixToGraph();
 //        testDfs();
 //        testBfs();
-        testSort();
+//        testSort();
+        testDijkstra();
     }
 
+    public static void testDijkstra() {
+        Integer[][] matrix = new Integer[][]{
+                {0,1,3},
+                {0,2,4},
+                {1,3,10},
+                {2,3,7},
+                {3,4,100},
+                {5,6,56},
+                {6,7,67}
+        };
+        Graph graph0 = MatrixToGraph.change0(matrix);
+        System.out.println(graph0);
+        System.out.println(Dijkstra.find(graph0.nodes.get(0)));
+    }
+
+    /**
+     * check
+     */
     public static void testSort() {
         Integer[][] matrix = new Integer[][]{
                 {0,1,3},
