@@ -68,6 +68,7 @@ public class Test {
         };
         Graph graph0 = MatrixToGraph.change0(matrix);
         System.out.println(graph0);
+        System.out.println(Dijkstra.find0(graph0.nodes.get(0)));
         System.out.println(Dijkstra.find(graph0.nodes.get(0)));
     }
 

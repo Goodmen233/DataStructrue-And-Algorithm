@@ -19,6 +19,7 @@ public class MultipleSpanningTree {
      */
     public static Set<Edge> prim(Graph graph) {
         Set<Edge> res = new HashSet<>();
+        // 标记已经计算过的点
         Set<Node> nodeSet = new HashSet<>();
         PriorityQueue<Edge> priorityQueue = new PriorityQueue<>(new Comparator<Edge>() {
             @Override
