@@ -126,6 +126,7 @@ public class Kmp {
         next[1] = 0;
         // 不仅指向当前比较的位置【当前字符的前一个字符的next位置】，而且是当前字符的最长前后缀的长度-1
         int curNext = 0;
+        // 要找的next数组下标值
         int cur = 2;
         // 从下标为2的位置开始赋值
         while (cur < target.length()) {
