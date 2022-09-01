@@ -17,8 +17,8 @@ public class MonotonousStack<T> {
      */
     public MonotonousStack(List<T> list, Comparator<T> cmp) {
         stack = new LinkedList<>();
-        list = list;
-        cmp = cmp;
+        this.list = list;
+        this.cmp = cmp;
     }
 
     /**
@@ -38,27 +38,42 @@ public class MonotonousStack<T> {
     }
 
     /**
+     * 判断栈是否为空
+     * @return 是否为空
+     */
+    public boolean isEmpty() {
+        return stack.isEmpty();
+    }
+
+    /**
      * 放入单调栈，并弹出不合格元素
      * @param pos 元素位置
-     * @return 不合格元素集合
+     * @return 不合格元素集合【最后一个元素是留在栈里的元素】
      */
     public List<Node> push(Integer pos) {
         List<Node> res = new ArrayList<>(10);
-        Integer nodeElement = peek().peek();
         // 如果栈为空，直接加入
         if (stack.isEmpty()) {
             stack.push(new Node(pos));
             return res;
         }
+        // 指向栈顶元素的某个代表值
+        Integer nodeElement = peek().peek();
         // 如果栈不为空，且栈顶元素值和该元素比较值小于0时，弹出栈顶元素，继续向下比较
         //                                  ｜
         //                         list[nodeElement] - list[pos] 表示栈顶元素小于当前位置，单调递增栈【从栈顶往里看】
         //                         list[pos] - list[nodeElement] 表示栈顶元素大于当前位置，单调递减栈【从栈顶往里看】
-        while(! stack.isEmpty() || cmp.compareTo(nodeElement, pos, list) < 0) {
+        while(cmp.compareTo(nodeElement, pos, list) < 0) {
             res.add(pop());
+            if (stack.isEmpty()) {
+                nodeElement = -1;
+                break;
+            }
             nodeElement = peek().peek();
         }
-        if (cmp.compareTo(pos, nodeElement, list) == 0) {
+        // 将栈顶元素也放入集合里面，方便外部处理
+        res.add(peek());
+        if (! stack.isEmpty() && cmp.compareTo(pos, nodeElement, list) == 0) {
             // 如果两个位置元素相等，将pos放入栈顶的Node中
             peek().add(pos);
         } else {
@@ -66,6 +81,17 @@ public class MonotonousStack<T> {
             stack.push(new Node(pos));
         }
         return res;
+    }
+
+    /**
+     * 处理节点信息
+     * @param left 左侧满足条件值
+     * @param right 右侧满足条件值
+     * @param cur 当前值
+     */
+    public static <T> void dealMessage(T left, T right, T cur) {
+        System.out.println(cur + "的左侧满足条件的值为" + (left == null ? "null" : left) +
+                "，右侧满足条件的值为" + (right == null ? "null" : right));
     }
 
     public interface Comparator<T> {
