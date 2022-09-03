@@ -1,5 +1,6 @@
 package com.ccb.def.monotonous;
 
+import com.ccb.def.monotonous.deque.MonotonousDeque;
 import com.ccb.def.monotonous.stack.MonotonousStack;
 
 import java.util.ArrayList;
@@ -9,7 +10,35 @@ import java.util.List;
 public class TestMonotonousCollection {
     public static void main(String[] args) {
 //        maxStackTest();
-        minStackTest();
+//        minStackTest();
+//        maxDequeTest();
+        minDequeTest();
+    }
+
+    /**
+     * check
+     */
+    public static void minDequeTest() {
+        List<Integer> list = new ArrayList<>(Arrays.asList(9,8,4,5,3,2,7,8,6,3,9));
+        MonotonousDeque<Integer> deque = new MonotonousDeque<>(list,
+                (pos1, pos2, list1) -> list1.get(pos2) - list1.get(pos1));
+        // 求区间start到end的最小值
+        int start = 1;
+        int end = 6;
+        System.out.println(deque.getValue(start, end));
+    }
+
+    /**
+     * check
+     */
+    public static void maxDequeTest() {
+        List<Integer> list = new ArrayList<>(Arrays.asList(9,8,4,5,3,2,7,8,6,3,9));
+        MonotonousDeque<Integer> deque = new MonotonousDeque<>(list,
+                (pos1, pos2, list1) -> list1.get(pos1) - list1.get(pos2));
+        // 求区间start到end的最大值
+        int start = 1;
+        int end = 6;
+        System.out.println(deque.getValue(start, end));
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.ccb.def.monotonous.stack;
 
 import java.util.*;
+import com.ccb.def.monotonous.cmp.Comparator;
 
 /**
  * 单调栈，主要用来求左右两边的最值问题
@@ -92,20 +93,6 @@ public class MonotonousStack<T> {
     public static <T> void dealMessage(T left, T right, T cur) {
         System.out.println(cur + "的左侧满足条件的值为" + (left == null ? "null" : left) +
                 "，右侧满足条件的值为" + (right == null ? "null" : right));
-    }
-
-    public interface Comparator<T> {
-        /**
-         * 比较方法
-         * @param pos1 位置1
-         * @param pos2 位置2
-         * @param list 集合元素
-         * @return
-         * <0，表示位置1的元素小于位置2
-         * =0，表示位置1的元素等于位置2
-         * >0，表示位置1的元素大于位置2
-         */
-        int compareTo(int pos1, int pos2, List<T> list);
     }
 
     /**
