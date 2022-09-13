@@ -1,5 +1,7 @@
 package com.ccb.def;
 
+import java.util.Objects;
+
 /**
  * 二叉树节点
  */
@@ -38,4 +40,5 @@ public class TreeNode {
     public void setRight(TreeNode right) {
         this.right = right;
     }
+
 }
