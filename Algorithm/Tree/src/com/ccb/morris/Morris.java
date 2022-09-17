@@ -212,11 +212,13 @@ public class Morris {
         TreeNode preNode = null;
         TreeNode cur;
         while (node != null) {
+            // 每次进行大小判断
             if (preNode != null && preNode.getVal() > node.getVal()) {
                 return false;
             }
             if ((cur = node.getLeft()) == null) {
                 // 如果当前节点的左子节点不存在
+                // 中序遍历处理点1
                 preNode = node;
                 node = node.getRight();
             } else {
@@ -231,6 +233,7 @@ public class Morris {
                 } else {
                     // 如果左子节点的最右叶子节点的右指针值为当前节点
                     cur.setRight(null);
+                    // 中序遍历处理点2
                     preNode = node;
                     node = node.getRight();
                 }
