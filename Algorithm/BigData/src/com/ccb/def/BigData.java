@@ -11,4 +11,7 @@ package com.ccb.def;
  *      7、利用堆、外排序来做多个单元结果的合并（败者树）
  */
 public class BigData {
+    public static void main(String[] args) {
+        System.out.println("Hello,world");
+    }
 }
