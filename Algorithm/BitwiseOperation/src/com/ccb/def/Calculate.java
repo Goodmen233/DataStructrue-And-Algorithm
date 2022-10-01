@@ -85,6 +85,9 @@ public class Calculate {
      * @return 除法结果
      */
     public static int div(int a, int b) {
+        if (b == 0) {
+            throw new RuntimeException("除数不能为0");
+        }
         boolean isNegA = a < 0;
         boolean isNegB = b < 0;
         if (isNegA) {
@@ -113,6 +116,9 @@ public class Calculate {
      * @return 除法结果
      */
     public static int div0(int a, int b) {
+        if (b == 0) {
+            throw new RuntimeException("除数不能为0");
+        }
         boolean isNegA = a < 0;
         boolean isNegB = b < 0;
         if (isNegA) {
