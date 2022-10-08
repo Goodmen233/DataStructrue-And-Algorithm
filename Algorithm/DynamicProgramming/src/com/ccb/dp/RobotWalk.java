@@ -88,8 +88,8 @@ public class RobotWalk {
      */
     private static void arrOut(int[][] dp) {
         for (int[] ints : dp) {
-            for (int j = 0; j < ints.length; j++) {
-                System.out.print(ints[j] + " ");
+            for (int anInt : ints) {
+                System.out.print(anInt + " ");
             }
             System.out.println();
         }
