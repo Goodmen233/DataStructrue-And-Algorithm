@@ -22,7 +22,8 @@ import java.util.HashMap;
 public class Test {
     public static void main(String[] args) {
 //        testRobotWalk();
-        testCoinSum();
+//        testCoinSum();
+        testExtremePointChooseNum();
     }
 
     /**
@@ -38,10 +39,19 @@ public class Test {
         System.out.println(RobotWalk.dp(n, e, s, k));
     }
 
+    /**
+     * check
+     */
     private static void testCoinSum() {
         int[] coins = {1,3,6,1,1,2};
         int sum = 5;
         System.out.println(CoinSum.recursion(coins, sum, 0));
         System.out.println(CoinSum.dp(coins, sum));
+    }
+
+    private static void testExtremePointChooseNum() {
+        int[] nums = {3, 100, 4, 50};
+        System.out.println(ExtremePointChooseNum.recursion(nums));
+        System.out.println(ExtremePointChooseNum.dp(nums));
     }
 }
