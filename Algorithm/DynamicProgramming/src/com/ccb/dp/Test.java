@@ -8,7 +8,7 @@ import java.util.HashMap;
  *      1、递归——无后效性【指定参数，递归返回值是一样的】
  *      2、记忆搜索——空间换时间，防止递归重复计算
  *      3、严格表结构——递归变量有n个，那么，就需要n维数组
- *      4、严格表精致结构——滚动数组
+ *      4、严格表精致结构——滚动数组/斜率优化
  *  从上往下依次优化，就形成了动态规划
  *  注：某些问题上，记忆搜索和严格表结构 时间复杂度一样
  *
@@ -21,7 +21,8 @@ import java.util.HashMap;
  */
 public class Test {
     public static void main(String[] args) {
-        testRobotWalk();
+//        testRobotWalk();
+        testCoinSum();
     }
 
     /**
@@ -35,5 +36,12 @@ public class Test {
         System.out.println(RobotWalk.recursion(n, e, s, k));
         System.out.println(RobotWalk.recursionCache(n, e, s, k, new HashMap<>(16)));
         System.out.println(RobotWalk.dp(n, e, s, k));
+    }
+
+    private static void testCoinSum() {
+        int[] coins = {1,3,6,1,1,2};
+        int sum = 5;
+        System.out.println(CoinSum.recursion(coins, sum, 0));
+        System.out.println(CoinSum.dp(coins, sum));
     }
 }
