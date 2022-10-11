@@ -13,17 +13,20 @@ import java.util.HashMap;
  *  注：某些问题上，记忆搜索和严格表结构 时间复杂度一样
  *
  *  递归优化成动态规划，自底向上考虑：
- *      递归初始传入值——dp返回取的数组下标
- *      递归方法参数的变量取值范围——dp维度表示的含义
- *      递归终止条件——dp数组初始化值
- *      递归核心——dp数组普通值计算赋值
- *
+ *      1、确认可变参数维度：整形【0维】，数组【1维】[可能性太多]     所以一般都是0维
+ *      2、确认维度：递归参数中的变量有几个——一个一维，两个二维，三个三维
+ *      ------------------------------------------------------
+ *      3、确定dp维度表示的含义：递归方法参数的变量取值范围
+ *      4、dp数组初始化值：递归终止条件所取的值
+ *      5、*确定遍历顺序及计算普通值：递归核心改造
+ *      6、dp返回取的数组下标：递归初始传入值
+ *      7、优化，如果可以的话
  */
 public class Test {
     public static void main(String[] args) {
 //        testRobotWalk();
-//        testCoinSum();
-        testExtremePointChooseNum();
+        testCoinSum();
+//        testExtremePointChooseNum();
     }
 
     /**
@@ -49,6 +52,9 @@ public class Test {
         System.out.println(CoinSum.dp(coins, sum));
     }
 
+    /**
+     * check
+     */
     private static void testExtremePointChooseNum() {
         int[] nums = {3, 100, 4, 50};
         System.out.println(ExtremePointChooseNum.recursion(nums));
