@@ -25,8 +25,9 @@ import java.util.HashMap;
 public class Test {
     public static void main(String[] args) {
 //        testRobotWalk();
-        testCoinSum();
+//        testCoinSum();
 //        testExtremePointChooseNum();
+        testChess();
     }
 
     /**
@@ -59,5 +60,18 @@ public class Test {
         int[] nums = {3, 100, 4, 50};
         System.out.println(ExtremePointChooseNum.recursion(nums));
         System.out.println(ExtremePointChooseNum.dp(nums));
+    }
+
+    /**
+     * check
+     */
+    private static void testChess() {
+        int targetX = 4;
+        int targetY = 5;
+        int curX = 0;
+        int curY = 0;
+        int k = 3;
+        System.out.println(Chess.recursion(targetX, targetY, curX, curY, k));
+        System.out.println(Chess.dp(targetX, targetY, k));
     }
 }
