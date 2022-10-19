@@ -1,5 +1,7 @@
 package com.ccb.dp;
 
+import static com.ccb.dp.PeopleWalk.getValue;
+
 /**
  * 象棋，马【可以从8个方向跳】从(0，0)到另一个指定点，走k步，求方法数
  */
@@ -86,12 +88,6 @@ public class Chess {
      * @return 值
      */
     private static int getEffectiveValue(int[][][] dp, int x, int y, int z) {
-        int xLen = dp.length;
-        int yLen = dp[0].length;
-        int zLen = dp[0][0].length;
-        if (x > X || x < 0 || y > Y || y < 0 || z < 0) {
-            return 0;
-        }
-        return dp[x][y][z];
+        return getValue(dp, x, y, z, Y, X);
     }
 }

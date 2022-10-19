@@ -27,7 +27,20 @@ public class Test {
 //        testRobotWalk();
 //        testCoinSum();
 //        testExtremePointChooseNum();
-        testChess();
+//        testChess();
+        testPeopleWalk();
+    }
+
+    private static void testPeopleWalk() {
+        int n = 5;
+        int m = 5;
+        int endX = 2;
+        int endY = 2;
+        int startX = 0;
+        int startY = 0;
+        int k = 4;
+        System.out.println(PeopleWalk.recursion(n, m, startX, startY, endX, endY, k));
+        System.out.println(PeopleWalk.dp(n, m, startX, startY, endX, endY, k));
     }
 
     /**
