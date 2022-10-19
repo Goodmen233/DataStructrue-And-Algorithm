@@ -53,10 +53,10 @@ public class Chess {
      *  5、确定dp核心：8个方向累加
      *  6、确定dp结果：[0][0][k]
      *
-     * @param targetX
-     * @param targetY
-     * @param k
-     * @return
+     * @param targetX 目标位置x
+     * @param targetY 目标位置y
+     * @param k 还剩k步
+     * @return 还剩k步，从当前位置到目标位置有的方法数
      */
     public static int dp(int targetX, int targetY, int k) {
         int[][][] dp = new int[X + 1][Y + 1][k + 1];

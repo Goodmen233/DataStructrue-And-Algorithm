@@ -38,14 +38,14 @@ public class PeopleWalk {
     /**
      * 动态规划
      *
-     * @param n
-     * @param m
-     * @param startX
-     * @param startY
-     * @param endX
-     * @param endY
-     * @param k
-     * @return
+     * @param n n行
+     * @param m m列
+     * @param startX 开始x坐标
+     * @param startY 开始y坐标
+     * @param endX 结束x坐标
+     * @param endY 结束y坐标
+     * @param k k步
+     * @return 方法数
      */
     public static int dp(int n, int m, int startX, int startY, int endX, int endY, int k) {
         int[][][] dp = new int[n + 1][m + 1][k + 1];
@@ -77,10 +77,17 @@ public class PeopleWalk {
         return getValue(dp, x, y, z, n, m);
     }
 
+    /**
+     * 获取dp数组有效值
+     * @param dp dp数组
+     * @param x 横坐标
+     * @param y 纵坐标
+     * @param z 竖坐标
+     * @param n 行
+     * @param m 列
+     * @return 值
+     */
     public static int getValue(int[][][] dp, int x, int y, int z, int n, int m) {
-        int xLen = dp.length;
-        int yLen = dp[0].length;
-        int zLen = dp[0][0].length;
         if (x > m || x < 0 || y > n || y < 0 || z < 0) {
             return 0;
         }
