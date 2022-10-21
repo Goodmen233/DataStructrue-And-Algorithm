@@ -10,7 +10,7 @@ import java.util.HashMap;
  *      3、严格表结构——递归变量有n个，那么，就需要n维数组
  *      4、严格表精致结构——滚动数组/斜率优化
  *  从上往下依次优化，就形成了动态规划
- *  注：某些问题上，记忆搜索和严格表结构 时间复杂度一样
+ *  注：某些问题上，记忆搜索和严格表结构 时间复杂度一样 11
  *
  *  递归优化成动态规划，自底向上考虑：
  *      1、确认可变参数维度：整形【0维】，数组【1维】[可能性太多]     所以一般都是0维
@@ -28,9 +28,25 @@ public class Test {
 //        testCoinSum();
 //        testExtremePointChooseNum();
 //        testChess();
-        testPeopleWalk();
+//        testPeopleWalk();
+        testCoinsSum();
     }
 
+    /**
+     * check
+     */
+    private static void testCoinsSum() {
+        int[] coins = new int[] {1, 5, 10};
+        int target = 10;
+        System.out.println(CoinsSum.recursion(coins, 0, target));
+        System.out.println(CoinsSum.dp(coins, target));
+        System.out.println(CoinsSum.dpOptimizeOfK(coins, target));
+        System.out.println(CoinsSum.dpOptimizeOfRoll(coins, target));
+    }
+
+    /**
+     * check
+     */
     private static void testPeopleWalk() {
         int n = 5;
         int m = 5;
