@@ -1,5 +1,7 @@
 package com.ccb.def;
 
+import java.util.Objects;
+
 /**
  * 二叉树节点
  */
@@ -51,4 +53,16 @@ public class TreeNode {
         this.right = right;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TreeNode treeNode = (TreeNode) o;
+        return val == treeNode.val;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(val);
+    }
 }

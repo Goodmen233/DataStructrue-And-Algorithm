@@ -1,5 +1,8 @@
 package com.ccb.def;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  * 二叉排序树：
  *  默认没有重复项。如果有，可以封装节点，使之记录出现次数。
@@ -24,6 +27,178 @@ package com.ccb.def;
  *          BST<左右旋的BST<AVL/红黑树/SB树
  */
 public class BinarySearchTree {
+
+    /**
+     * 构建二叉搜索树
+     *
+     * @param values 搜索树值集合
+     * @return 树的根节点
+     */
+    public static TreeNode build(int[] values) {
+        if (values.length <= 0) {
+            return new TreeNode();
+        }
+        Arrays.sort(values);
+        // 拿排序后的中间节点作为根节点，保持一定平衡
+        TreeNode root = new TreeNode(values[values.length / 2]);
+        // 因为add操作遇到相同值直接跳过，所以不做过滤
+        for (int value : values) {
+            add(root, value);
+        }
+        return root;
+    }
+
+    /**
+     * 添加节点
+     *
+     * @param root 根节点
+     * @param value 节点值
+     * @return 是否添加成功
+     */
+    public static boolean add(TreeNode root, Integer value) {
+        if (Objects.isNull(root) || !check(root)) {
+            return false;
+        }
+        TreeNode cur = root;
+        TreeNode pre = cur;
+        int curVal = 0;
+        while(! Objects.isNull(cur)) {
+            curVal = cur.getVal();
+            // 如果值相等，直接跳过
+            if (Objects.equals(value, curVal)) {
+                return true;
+            } else if (curVal > value) {
+                pre = cur;
+                cur = cur.getLeft();
+            } else {
+                // curVal < value
+                pre = cur;
+                cur = cur.getRight();
+            }
+        }
+        // 此时curVal = pre.val
+        if (curVal > value) {
+            pre.setLeft(new TreeNode(value));
+        } else {
+            // curVal < value
+            pre.setRight(new TreeNode(value));
+        }
+        return true;
+    }
+
+    /**
+     * 查找指定值在树上的节点
+     *
+     * @param root 根节点
+     * @param target 目标值
+     * @return 目标值的节点，没有返回null
+     */
+    public static TreeNode search(TreeNode root, Integer target) {
+        if (!check(root)) {
+            return null;
+        }
+        TreeNode cur = root;
+        while (!Objects.isNull(cur)) {
+            if (Objects.equals(target, cur.getVal())) {
+                return cur;
+            } else if (target < cur.getVal()) {
+                cur = cur.getLeft();
+            } else {
+                // target > cur.getVal()
+                cur = cur.getRight();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 删除指定值在树上的节点
+     *
+     * @param root 根节点
+     * @param target 目标值
+     * @return 删除成功返回true，空或失败返回false
+     */
+    public static boolean delete(TreeNode root, Integer target) {
+        if (!check(root)) {
+            return false;
+        }
+        TreeNode cur = root;
+        TreeNode pre = null;
+        if (! Objects.equals(cur.getVal(), target)) {
+            while (!Objects.isNull(cur)) {
+                if (Objects.equals(target, cur.getVal())) {
+                    break;
+                } else if (target < cur.getVal()) {
+                    pre = cur;
+                    cur = cur.getLeft();
+                } else {
+                    pre = cur;
+                    // target > cur.getVal()
+                    cur = cur.getRight();
+                }
+            }
+        }
+        if (Objects.isNull(cur)) {
+            return false;
+        }
+        // 判断删除节点的情况
+        // 1、左右子树都为空，直接删除
+        // 2、左右子树一者为空，直接接上去。
+        if (Objects.isNull(cur.getLeft()) && Objects.isNull(cur.getRight())) {
+            setNode(pre, cur, null);
+        } else if (Objects.isNull(cur.getLeft())) {
+            setNode(pre, cur, cur.getRight());
+        } else if (Objects.isNull(cur.getRight())) {
+            setNode(pre, cur, cur.getLeft());
+        } else {
+            // 3、左右子树不为空，找到次大值/次小值，直接替代
+            // TODO
+        }
+        return true;
+    }
+
+    /**
+     * 替换节点
+     *
+     * @param pre 替换节点的父节点
+     * @param cur 要替换的节点
+     * @param instead 替换节点
+     */
+    private static void setNode(TreeNode pre, TreeNode cur, TreeNode instead) {
+        assert pre != null;
+        assert cur != null;
+        assert instead != null;
+        boolean isLeft = Objects.equals(pre.getLeft().getVal(), cur.getVal());
+        if (isLeft) {
+            pre.setLeft(instead);
+        } else {
+            pre.setRight(instead);
+        }
+    }
+
+    /**
+     * 检查是否是二叉搜索树
+     *
+     * @param root 根节点
+     * @return 是返回true，空或否返回false
+     */
+    public static boolean check(TreeNode root) {
+        if (Objects.isNull(root)) {
+            return false;
+        }
+        return true;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 平衡二叉树AVL：高度差不超过1
