@@ -1,6 +1,8 @@
 package com.ccb.def;
 
 import java.util.Arrays;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Objects;
 
 /**
@@ -25,6 +27,9 @@ import java.util.Objects;
  *
  *      关系：
  *          BST<左右旋的BST<AVL/红黑树/SB树
+ *
+ * ------------------------------------------------------------------
+ * 以下均用左小右大进行实现
  */
 public class BinarySearchTree {
 
@@ -186,7 +191,50 @@ public class BinarySearchTree {
         if (Objects.isNull(root)) {
             return false;
         }
+        // 中序遍历，前一个值肯定比后一个值小
+        TreeNode pre = null;
+        // 用通用栈遍历实现
+        Deque<TreeNode> stack = new LinkedList();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode topNode = stack.pop();
+            if (topNode != null) {
+                if (topNode.getRight() != null) {
+                    stack.push(topNode.getRight());
+                }
+                stack.push(topNode);
+                stack.push(null);
+                if (topNode.getLeft() != null) {
+                    stack.push(topNode.getLeft());
+                }
+            } else {
+                TreeNode cur = stack.pop();
+                if (!Objects.isNull(pre) && pre.getVal() >= cur.getVal()) {
+                    return false;
+                }
+                pre = cur;
+            }
+        }
         return true;
+    }
+
+    /**
+     * 比较两棵树是否相等
+     *
+     * @param node1 树1
+     * @param node2 树2
+     */
+    public static boolean equals(TreeNode node1, TreeNode node2) {
+        if (!Objects.isNull(node1) && !Objects.isNull(node2)) {
+            if (Objects.equals(node1.getVal(), node2.getVal())) {
+                return equals(node1.getRight(), node2.getRight()) &&
+                        equals(node1.getLeft(), node2.getLeft());
+            } else {
+                return false;
+            }
+        } else {
+            return Objects.isNull(node1) && Objects.isNull(node2);
+        }
     }
 
 
