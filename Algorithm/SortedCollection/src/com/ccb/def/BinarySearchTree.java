@@ -137,8 +137,8 @@ public class BinarySearchTree {
                     pre = cur;
                     cur = cur.getLeft();
                 } else {
-                    pre = cur;
                     // target > cur.getVal()
+                    pre = cur;
                     cur = cur.getRight();
                 }
             }
@@ -149,7 +149,7 @@ public class BinarySearchTree {
         // 判断删除节点的情况
         // 1、左右子树都为空，直接删除
         // 2、左右子树一者为空，直接接上去。
-        if (Objects.isNull(cur.getLeft()) && Objects.isNull(cur.getRight())) {
+        if (isLeaf(cur)) {
             setNode(pre, cur, null);
         } else if (Objects.isNull(cur.getLeft())) {
             setNode(pre, cur, cur.getRight());
@@ -157,23 +157,47 @@ public class BinarySearchTree {
             setNode(pre, cur, cur.getLeft());
         } else {
             // 3、左右子树不为空，找到次大值/次小值，直接替代
-            // TODO
+            // 以找到次小值为例
+            TreeNode minCurPre = null;
+            TreeNode minCur = cur.getLeft();
+            while (minCur.getRight() != null) {
+                minCurPre = minCur;
+                minCur = minCur.getRight();
+            }
+            if (!Objects.isNull(minCurPre)) {
+                minCurPre.setRight(null);
+                cur.setVal(minCur.getVal());
+            } else {
+                TreeNode curRight = cur.getRight();
+                setNode(pre, cur, minCur);
+                minCur.setRight(curRight);
+            }
         }
         return true;
+    }
+
+    /**
+     * 判断是否是叶子节点
+     *
+     * @param node 节点
+     * @return 是否是
+     */
+    public static boolean isLeaf(TreeNode node) {
+        return Objects.isNull(node.getRight()) && Objects.isNull(node.getLeft());
     }
 
     /**
      * 替换节点
      *
      * @param pre 替换节点的父节点
-     * @param cur 要替换的节点
-     * @param instead 替换节点
+     * @param cur 替换节点
+     * @param instead 替换cur的节点
      */
     private static void setNode(TreeNode pre, TreeNode cur, TreeNode instead) {
         assert pre != null;
         assert cur != null;
         assert instead != null;
-        boolean isLeft = Objects.equals(pre.getLeft().getVal(), cur.getVal());
+        boolean isLeft = pre.getLeft() != null && Objects.equals(pre.getLeft().getVal(), cur.getVal());
         if (isLeft) {
             pre.setLeft(instead);
         } else {
