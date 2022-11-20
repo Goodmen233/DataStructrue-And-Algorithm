@@ -4,6 +4,7 @@ import com.ccb.def.BinarySearchTree;
 import com.ccb.def.TreeNode;
 import com.ccb.tree.RecursionTraverse;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class TestSortedCollection {
@@ -46,6 +47,13 @@ public class TestSortedCollection {
         tree = getBST1();
         assertCond(BinarySearchTree.delete(tree, 30));
         assertCond(BinarySearchTree.equals(tree, getBST1WhenDelete30()));
+
+        tree = getBST0();
+        assertCond(BinarySearchTree.equals(BinarySearchTree.leftRotate(tree), getBST0WhenLeftRotate()));
+        tree = getBST0();
+
+        assertCond(BinarySearchTree.equals((tree = BinarySearchTree.rightRotate(tree)), getBST0WhenRightRotate()));
+        assertCond(BinarySearchTree.equals(BinarySearchTree.leftRotate(tree), getBST0()));
     }
 
     /**
@@ -202,6 +210,74 @@ public class TestSortedCollection {
         node5.setLeft(node6);
         node5.setRight(node7);
         return root;
+    }
+
+    /**
+     * 获取一颗 二叉搜索树
+     *                  16
+     *               |      \
+     *              15      20
+     *                      |   \
+     *                     17   30
+     *                         |  \
+     *                        25  31
+     *                       |  \
+     *                      24  26
+     *
+     * @return 树的跟节点
+     */
+    private static TreeNode getBST0WhenRightRotate() {
+        TreeNode root = new TreeNode(20);
+        TreeNode node1 = new TreeNode(16);
+        TreeNode node2 = new TreeNode(30);
+        TreeNode node3 = new TreeNode(15);
+        TreeNode node4 = new TreeNode(17);
+        TreeNode node5 = new TreeNode(25);
+        TreeNode node6 = new TreeNode(24);
+        TreeNode node7 = new TreeNode(26);
+        TreeNode node8 = new TreeNode(31);
+        root.setLeft(node4);
+        root.setRight(node2);
+        node1.setLeft(node3);
+        node1.setRight(root);
+        node2.setLeft(node5);
+        node2.setRight(node8);
+        node5.setLeft(node6);
+        node5.setRight(node7);
+        return node1;
+    }
+
+    /**
+     * 获取一颗 二叉搜索树
+     *                  30
+     *                |     \
+     *               20      31
+     *             |    \
+     *            16     25
+     *           | \     |\
+     *          15 17   24 26
+     *
+     * @return 树的跟节点
+     */
+    private static TreeNode getBST0WhenLeftRotate() {
+        TreeNode root = new TreeNode(20);
+        TreeNode node1 = new TreeNode(16);
+        TreeNode node2 = new TreeNode(30);
+        TreeNode node3 = new TreeNode(15);
+        TreeNode node4 = new TreeNode(17);
+        TreeNode node5 = new TreeNode(25);
+        TreeNode node6 = new TreeNode(24);
+        TreeNode node7 = new TreeNode(26);
+        TreeNode node8 = new TreeNode(31);
+        node2.setLeft(root);
+        node2.setRight(node8);
+        root.setRight(node5);
+        root.setLeft(node1);
+        node1.setLeft(node3);
+        node1.setRight(node4);
+        node5.setLeft(node6);
+        node5.setRight(node7);
+        return node2;
     }
 
     /**

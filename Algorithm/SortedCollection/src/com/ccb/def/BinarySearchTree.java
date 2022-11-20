@@ -261,6 +261,32 @@ public class BinarySearchTree {
         }
     }
 
+    /**
+     * 将树左旋:右子树的左指针指向当前节点，右子树的左孩子为当前节点的右孩子
+     * @param root 树的根节点
+     * @return 左旋后的根节点
+     */
+    public static TreeNode leftRotate(TreeNode root) {
+        assert root.getRight() != null;
+        TreeNode newRoot = root.getRight();
+        root.setRight(newRoot.getLeft());
+        newRoot.setLeft(root);
+        return newRoot;
+    }
+
+    /**
+     * 将树右旋:左子树的右指针指向当前节点，左子树的右孩子为当前节点的左孩子
+     * @param root 树的根节点
+     * @return 右旋后的根节点
+     */
+    public static TreeNode rightRotate(TreeNode root) {
+        assert root.getLeft() != null;
+        TreeNode newRoot = root.getLeft();
+        root.setLeft(newRoot.getRight());
+        newRoot.setRight(root);
+        return newRoot;
+    }
+
 
 
 
