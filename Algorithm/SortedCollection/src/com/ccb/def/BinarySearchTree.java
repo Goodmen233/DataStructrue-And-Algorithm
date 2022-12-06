@@ -287,17 +287,6 @@ public class BinarySearchTree {
         return newRoot;
     }
 
-
-
-
-
-
-
-
-
-
-
-
     /**
      * 平衡二叉树AVL：高度差不超过1
      *  检测时机：每次变化都要自底向上检查
